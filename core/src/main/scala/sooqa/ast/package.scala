@@ -22,6 +22,12 @@ package object ast {
   case class LTE[T](arg: Prod[T]) extends Expr[T, Boolean]
   case class IN[T](arg: Prod[Seq[T]]) extends Expr[Seq[T], Boolean]
   case class NIN[T](arg: Prod[Seq[T]]) extends Expr[Seq[T], Boolean]
-  case class AND(exprs: SEQUENCE[Boolean]) extends Expr[Nothing, Boolean]
-  case class OR(exprs: SEQUENCE[Boolean]) extends Expr[Nothing, Boolean]
+  case class AND(exprs: Seq[Prod[Boolean]]) extends Expr[Nothing, Boolean]
+  object AND {
+    def of(predicates: Prod[Boolean]*) = AND(predicates)
+  }
+  case class OR(exprs: Seq[Prod[Boolean]]) extends Expr[Nothing, Boolean]
+  object OR {
+    def of(predicates: Prod[Boolean]*) = OR(predicates)
+  }
 }

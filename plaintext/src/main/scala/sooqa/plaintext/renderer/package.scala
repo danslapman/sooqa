@@ -12,6 +12,6 @@ package object renderer {
       fields.map(f => s"'${f._1}': ${render(f._2)}").mkString("{", ", ", "}")
     case ON_FIELD(path, predicate) => s"'$path': ${render(predicate)}"
     case EQ(arg) => s"{$$eq: ${render(arg)}}"
-    case AND(seq) => s"{$$and: ${render(seq)}}"
+    case AND(seq) => s"{$$and: ${seq.map(render).mkString("[", ",", "]")}}"
   }
 }
