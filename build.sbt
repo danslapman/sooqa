@@ -4,6 +4,7 @@ lazy val sooqa = (project in file("core"))
     name := "sooqa",
     parallelExecution in ThisBuild := false,
     libraryDependencies ++= Seq(
+      "org.scala-lang" % "scala-reflect" % scalaVersion.value,
       "org.scalatest" %% "scalatest" % "3.0.5" % Test
     )
   )
